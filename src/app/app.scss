@@ -14,3 +14,16 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+ .toast-md.laraResponse{
+width: 80%;
+opacity: 0.8;
+margin-left: 10%;
+.toast-wrapper{
+  background: #FFF;
+}
+.toast-message{
+  color:#000;
+  font-weight: bold;
+}
+}
+

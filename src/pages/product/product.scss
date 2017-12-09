@@ -1,0 +1,61 @@
+page-product {
+
+  .card-background-page {
+
+    ion-card {
+      position: relative;
+      //text-align: right;
+    }
+
+    .card-title {
+      position: absolute;
+      top: 25%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #FFF;
+      opacity: 0.6;
+      left: 42%;
+    }
+
+    .card-subtitle {
+      font-size: 1.0em;
+      top: 30%;
+      position: absolute;
+      width: 100%;
+      color: #FFF;
+      opacity: 0.6;
+      left: 74%;
+    }
+
+  }
+
+  .product-info {
+    //background-color: #fccfab;
+    background-color: #fccfab;
+    background-image: url("https://www.transparenttextures.com/patterns/purty-wood.png");
+
+    border: #9f561c solid .5px;
+    ion-card-header{
+      color: #9f561c;
+      font-family: fantasy;
+    }
+    ion-card-content{
+      color: #9f561c;
+      font-family: cursive;
+    }
+  }
+
+  .theme-text{
+    color: #9f561c;
+      font-family: cursive;
+  }
+  .recommend{
+    background-color: #fccfab;
+  }
+
+  .toolbar-title-md{
+    padding: 0px 0px;
+  }
+
+}

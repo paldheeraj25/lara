@@ -1,0 +1,19 @@
+<!-- Generated template for the ChatbotComponent component -->
+<!--<ion-input type="text" placeholder="Talk to Lara! Try somthing like..."></ion-input>
+  <ion-icon ios="logo-apple" md="logo-android"></ion-icon>-->
+<img class="lara" src="assets/imgs/lara.png" />
+<ion-toolbar class="footer-toolbar">
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="bot" placeholder="Talk to Lara! Try somthing like..."></ion-input>
+  </ion-item>
+  <ion-buttons end>
+    <button ion-button icon-only (click)='sendMessage()' [disabled]="!bot">
+				<ion-icon name="paper-plane"></ion-icon>
+			</button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-item class="footer-lara-commands">
+  <button ion-button round (click)='checkPrice()' color="primary">what is price?</button>
+  <button ion-button round (click)='about()' color="secondary">Tell Me about it!</button>
+  <button ion-button round (click)='discount()' color="light">Discount?</button>
+</ion-item>
