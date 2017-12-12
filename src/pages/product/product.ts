@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { KeystreamProvider } from '../../providers/keystream/keystream';
 import { ProductProvider } from '../../providers/product/product';
+import { EnvVarProvider } from '../../providers/env-var/env-var';
+import { find, filter } from 'lodash';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -34,12 +36,27 @@ export class ProductPage {
   private timeStampTagServer: number;
   private productObject: Observable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public keystream: KeystreamProvider, public product: ProductProvider) {
+  //metadata variables
+  private metadata: any;
+  public imageUrl: String = this.envProvider.host;
+  public heading: String;
+  public description: String;
+  public metadataValues: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public keystream: KeystreamProvider, public product: ProductProvider, public envProvider: EnvVarProvider) {
   }
 
-  getProduct() {
+  getProduct(uid: string) {
 
-    this.product.getProduct().subscribe(data => {
+    this.product.getProduct(uid).subscribe(data => {
+      this.metadata = data['metadata'];
+      this.metadataValues = filter(data['metadata'], function (meta) {
+        return find(['manOrMachine', 'goldCarat', 'percentChrg', 'grossWeight', 'netWeight', 'stoneWeight', 'beadsWeight', 'perGramWeight'], function (o) { return o === meta.name; });
+      });
+      this.imageUrl = this.imageUrl + find(this.metadata, function (obj) { return obj.name === 'image'; }).value;
+      this.heading = find(this.metadata, function (obj) { return obj.name === 'heading'; }).value;
+      this.description = find(this.metadata, function (obj) { return obj.name === 'description'; }).value;
+      data = data['engagement'];
       if (data['RowKey']) {
         data['TimeStampServer'] = parseInt(data['TimeStampServer']);
         if (this.timeStampTag > data["TimeStampServer"]) {
@@ -49,16 +66,15 @@ export class ProductPage {
           var hexbitSecretKey = this.keystream.hexbit(data["SecretKey"]);
           var hexbitTimeStamp = this.keystream.hexbit(this.rowData.substr(16, 8));
           this.rollingCodeServer = this.keystream.keystream(hexbitSecretKey, hexbitTimeStamp, 4);
-
-          // this.product.updateProduct(this.timeStampTag).subscribe(data => {
+          //this.product.updateProduct(this.timeStampTag).subscribe(data => {
           //   console.log("time stamp updated");
           // });
+
         } else {
           console.log('url expired');
         }
       }
     });
-    this.productObject = this.product.getProduct();
   }
   //ionic life cycle function
   ionViewDidLoad() {
@@ -71,7 +87,7 @@ export class ProductPage {
     if (this.uid.substr(0, 4) != "3949") {
       //not valid uid
     } else {
-      this.getProduct();
+      this.getProduct(this.uid);
     }
   }
 

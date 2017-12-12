@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { ApiAiClient } from 'api-ai-javascript';
+import { ProductProvider } from '../product/product'
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -12,8 +13,9 @@ export class ChatbotProvider {
   readonly client = new ApiAiClient({ accessToken: this.token });
 
   conversation: Observable<String>;
+  product: Observable<any>;
 
-  constructor(public http: HttpClient, private platform: Platform) {
+  constructor(public http: HttpClient, private platform: Platform, public productProvider: ProductProvider) {
   }
 
   talk() {
@@ -24,8 +26,7 @@ export class ChatbotProvider {
   converse(msg: string) {
     return this.client.textRequest(msg)
       .then(res => {
-        const speech = res.result.fulfillment.speech;
-        return speech;
+        return res.result;
       });
   }
 }

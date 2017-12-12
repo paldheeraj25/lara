@@ -1,5 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { EnvVarProvider } from '../../providers/env-var/env-var';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/do';
@@ -14,13 +15,11 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ProductProvider {
 
-  public productUrl = "http://192.168.0.14:5012/api/appData";
-  getApiUrl: string = "http://45.33.34.17/api/products";
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public env: EnvVarProvider) {
   }
 
-  getProduct() {
-    return this.http.get("http://192.168.0.14:5012/api/appData/39493000006226");
+  getProduct(id: String) {
+    return this.http.get(this.env.api + "products/39493000006226");
   }
 
   updateProduct(timestamp) {
@@ -28,6 +27,6 @@ export class ProductProvider {
   }
 
   getPosts() {
-    return this.http.get(this.getApiUrl);
+    return this.http.get("http://192.168.0.14:5012/api/products");
   }
 }

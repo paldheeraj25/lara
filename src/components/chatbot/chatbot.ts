@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ToastController } from 'ionic-angular';
 import { ChatbotProvider } from '../../providers/chatbot/chatbot';
+import { ProductProvider } from '../../providers/product/product';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/scan';
 import 'rxjs/add/operator/last';
@@ -19,17 +20,27 @@ import 'rxjs/add/operator/takeLast';
 })
 export class ChatbotComponent {
 
+  @Input() productId: string;
+
   message: Observable<String>;
+  public productObservable: Observable<any>;
   bot: string;
   text: String;
 
-  constructor(public chatbot: ChatbotProvider, private toastCtrl: ToastController) {
+  constructor(public chatbot: ChatbotProvider, private toastCtrl: ToastController, public productProvider: ProductProvider) {
+
   }
 
   sendMessage() {
     this.chatbot.converse(this.bot).then(res => {
-      console.log(res);
-      this.presentToast(res);
+      if (res['metadata'].intentName === 'price') {
+
+        this.productObservable = this.productProvider.getProduct(this.productId);
+        this.productObservable.subscribe(productRes => {
+          console.log(productRes);
+        });
+      }
+      //this.presentToast(res.fulfillment.speech);
     });
   }
 
@@ -64,5 +75,9 @@ export class ChatbotComponent {
   discount() {
     this.bot = 'discount?';
     this.sendMessage();
+  }
+
+  ionViewDidLoad() {
+
   }
 }

@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { KeystreamProvider } from '../providers/keystream/keystream';
 import { ProductProvider } from '../providers/product/product';
 import { ChatbotProvider } from '../providers/chatbot/chatbot';
+import { EnvVarProvider } from '../providers/env-var/env-var';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ChatbotProvider } from '../providers/chatbot/chatbot';
     KeystreamProvider,
     ProductProvider,
     ChatbotProvider,
-    SpeechRecognition
+    SpeechRecognition,
+    EnvVarProvider
   ]
 })
 export class AppModule { }
