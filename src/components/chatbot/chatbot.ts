@@ -40,7 +40,7 @@ export class ChatbotComponent {
           console.log(productRes);
         });
       }
-      //this.presentToast(res.fulfillment.speech);
+      this.presentToast(res.fulfillment.speech);
     });
   }
 
