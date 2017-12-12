@@ -25,24 +25,15 @@
   </ion-card>
 
   <ion-grid>
-    <ion-row justify-content-center>
-      <ion-col *ngFor="let meta of metadataValues" class="theme-text" col-10 text-center>
-        <!--<span class="theme-text"> 20 years old </span>-->
-        <span> <b>{{meta.name}}</b> - {{meta.value}} </span>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-grid>
     <ion-row justify-content-end>
       <ion-col text-center>
-        <button ion-button small color="theme-dark">Estimate</button>
+        <button ion-button small color="theme-dark" (click)="showEstimate()">Estimate</button>
       </ion-col>
       <ion-col text-center>
-        <button ion-button small color="theme-dark">Sell</button>
+        <button ion-button small color="theme-dark" (click)="showSell()">Sell</button>
       </ion-col>
       <ion-col text-center>
-        <button ion-button small color="theme-dark">Share</button>
+        <button ion-button small color="theme-dark" (click)="showShare()">Share</button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -54,16 +45,6 @@
     </button>
     </ion-list>
   </ion-card>
-
-  <ion-fab right top>
-    <button ion-fab color="dark"><ion-icon name="arrow-dropdown"></ion-icon></button>
-    <ion-fab-list side="down">
-      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
 
   <!--<ion-card>
     <ion-card-header>

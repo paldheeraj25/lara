@@ -8,6 +8,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { EstimateModalPage } from '../pages/estimate-modal/estimate-modal';
+import { SellModalPage } from '../pages/sell-modal/sell-modal';
+import { ShareModalPage } from '../pages/share-modal/share-modal';
 import { KeystreamProvider } from '../providers/keystream/keystream';
 import { ProductProvider } from '../providers/product/product';
 import { ChatbotProvider } from '../providers/chatbot/chatbot';
@@ -17,6 +20,9 @@ import { EnvVarProvider } from '../providers/env-var/env-var';
   declarations: [
     MyApp,
     HomePage,
+    EstimateModalPage,
+    SellModalPage,
+    ShareModalPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,10 @@ import { EnvVarProvider } from '../providers/env-var/env-var';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    EstimateModalPage,
+    SellModalPage,
+    ShareModalPage
   ],
   providers: [
     StatusBar,

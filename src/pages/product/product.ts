@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { EstimateModalPage } from '../../pages/estimate-modal/estimate-modal';
+import { SellModalPage } from '../../pages/sell-modal/sell-modal';
+import { ShareModalPage } from '../../pages/share-modal/share-modal';
 import { KeystreamProvider } from '../../providers/keystream/keystream';
 import { ProductProvider } from '../../providers/product/product';
 import { EnvVarProvider } from '../../providers/env-var/env-var';
@@ -43,7 +46,7 @@ export class ProductPage {
   public description: String;
   public metadataValues: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public keystream: KeystreamProvider, public product: ProductProvider, public envProvider: EnvVarProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public keystream: KeystreamProvider, public product: ProductProvider, public envProvider: EnvVarProvider, public modal: ModalController) {
   }
 
   getProduct(uid: string) {
@@ -51,7 +54,7 @@ export class ProductPage {
     this.product.getProduct(uid).subscribe(data => {
       this.metadata = data['metadata'];
       this.metadataValues = filter(data['metadata'], function (meta) {
-        return find(['manOrMachine', 'goldCarat', 'percentChrg', 'grossWeight', 'netWeight', 'stoneWeight', 'beadsWeight', 'perGramWeight'], function (o) { return o === meta.name; });
+        return find(['gold carat', 'percent charge', 'gross weight', 'net weight', 'ston weight', 'beads weight', 'pe gram weight'], function (o) { return o === meta.name; });
       });
       this.imageUrl = this.imageUrl + find(this.metadata, function (obj) { return obj.name === 'image'; }).value;
       this.heading = find(this.metadata, function (obj) { return obj.name === 'heading'; }).value;
@@ -91,4 +94,19 @@ export class ProductPage {
     }
   }
 
+  //Show Estimate
+  showEstimate() {
+    let estimateModal = this.modal.create(EstimateModalPage, this.metadataValues);
+    estimateModal.present();
+  };
+
+  showSell() {
+    let sellModal = this.modal.create(SellModalPage);
+    sellModal.present();
+  }
+
+  showShare() {
+    let shareModal = this.modal.create(ShareModalPage);
+    shareModal.present();
+  }
 }
