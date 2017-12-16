@@ -10,8 +10,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EnvVarProvider {
 
-  public api: String = 'http://45.33.34.17/api/';//http://45.33.34.17/api/
-  public host: String = 'http://45.33.34.17/';
+  //public api: String = 'http://45.33.34.17/api/';//http://45.33.34.17/api/
+  //public host: String = 'http://45.33.34.17/';
+  public api: String = 'http://localhost:5012/api/';
+  public host: String = 'http://localhost:5012/';
   constructor(public http: HttpClient) {
 
   }

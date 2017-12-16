@@ -1,6 +1,8 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EnvVarProvider } from '../../providers/env-var/env-var';
+import { Jewel, IJewel } from '../../interfaces/jewel.interface';
+import { Observable } from 'rxjs/observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/do';
@@ -18,8 +20,8 @@ export class ProductProvider {
   constructor(public http: HttpClient, public env: EnvVarProvider) {
   }
 
-  getProduct(id: String) {
-    return this.http.get(this.env.api + "products/39493000006226");
+  getProduct(id: String): Observable<Jewel> {
+    return this.http.get(this.env.api + "jewel/get/update/123456");
   }
 
   updateProduct(timestamp) {
@@ -28,5 +30,10 @@ export class ProductProvider {
 
   getPosts() {
     return this.http.get("http://192.168.0.14:5012/api/products");
+  }
+
+  sendSms(message: any) {
+    console.log(message);
+    return this.http.post('http://localhost:5012/api/jewel/share', message);
   }
 }

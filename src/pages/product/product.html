@@ -2,8 +2,14 @@
 
   <ion-card class="card-background-page">
     <img [src]="imageUrl" />
-    <div class="card-title">{{heading}}</div>
-    <div class="card-subtitle">Embracing Jwellery</div>
+    <ion-grid>
+      <ion-row justify-content-end>
+        <ion-col class="card-title" text-center>{{jewel?.name}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="card-subtitle" text-right col-11>Embrace the beauty</ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
   <ion-card class="product-info">
     <ion-card-header>
@@ -20,7 +26,7 @@
     </ion-card-header>
     <ion-card-content>
       <span> SIMPLICITY . ELEGANCE . VIVACIOUS </span>
-      <br> {{description}}
+      <br> {{jewel?.description}}
     </ion-card-content>
   </ion-card>
 
@@ -32,16 +38,13 @@
       <ion-col text-center>
         <button ion-button small color="theme-dark" (click)="showSell()">Sell</button>
       </ion-col>
-      <ion-col text-center>
-        <button ion-button small color="theme-dark" (click)="showShare()">Share</button>
-      </ion-col>
     </ion-row>
   </ion-grid>
   <ion-card>
     <ion-list class="recommendation">
       <button ion-item>
         <span class="theme-text">Recommendations</span>
-      <span class="theme-text" item-end>2000</span>
+      <span class="theme-text" item-end>{{jewel?.tap}}</span>
     </button>
     </ion-list>
   </ion-card>
