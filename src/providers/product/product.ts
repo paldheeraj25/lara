@@ -20,7 +20,7 @@ export class ProductProvider {
   constructor(public http: HttpClient, public env: EnvVarProvider) {
   }
 
-  getProduct(id: String): Observable<Jewel> {
+  getProduct(id: String): Observable<any> {
     return this.http.get(this.env.api + "jewel/get/update/123456");
   }
 
