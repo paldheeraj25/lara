@@ -35,17 +35,11 @@ export class EstimateModalPage {
 
   sendSms() {
     let message = {
-      jewel: `Beads Weight: ${this.jewel.beadsWeight}
-    Gold CaratL: ${this.jewel.goldCarat}
-    Gross WeigthL ${this.jewel.grossWeight},
-    Net Weight: ${this.jewel.netWeight}
-    Percentage Charge: ${this.jewel.percentageChrg}
-    Per Gram Weight: ${this.jewel.perGramWeight}
-    Total: ${this.total}
-    `,
+      jewel: 'Beads Weight: ' + this.jewel.beadsWeight + ' Gold CaratL: ' + this.jewel.goldCarat + ' Gross Weigth: ' + this.jewel.grossWeight + ' Net Weight: ' + this.jewel.netWeight + 'Percentage Charge: ' + this.jewel.percentageChrg + 'Per Gram Weight: ' + this.jewel.perGramWeight + ' Total: ' + this.total,
       number: this.mobileNumber
     }
 
+    console.log(message);
     this.productProvider.sendSms(message).subscribe(data => {
       console.log(data);
     });

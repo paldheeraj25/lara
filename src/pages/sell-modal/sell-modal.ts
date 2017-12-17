@@ -15,6 +15,8 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class SellModalPage {
 
+  public contactPerson: string = '';
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
   }
 

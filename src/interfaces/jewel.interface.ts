@@ -23,7 +23,7 @@ export class IJewel implements Jewel {
     public description: String,
     public city: String,
     public branch: String,
-    public image: String,
+    public image: string,
     public goldCarat: Number,
     public percentageChrg: Number,
     public grossWeight: Number,
