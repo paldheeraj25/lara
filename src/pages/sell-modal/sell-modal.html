@@ -22,6 +22,12 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-input type="Email or Mobile" placeholder="Mobile Number" [(ngModel)]="contactPerson"></ion-input>
+    <ion-input type="Email or Mobile" placeholder="Mobile Number" [(ngModel)]="contactNumber"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="Email or Mobile" placeholder="Email Number" [(ngModel)]="contactEmail"></ion-input>
+  </ion-item>
+  <ion-item text-center>
+    <button ion-button small color="theme-dark" round (click)="updateSoldCount()">sold</button>
   </ion-item>
 </ion-content>

@@ -116,12 +116,7 @@ export class ProductPage {
   };
 
   showSell() {
-    let sellModal = this.modal.create(SellModalPage);
+    let sellModal = this.modal.create(SellModalPage, this.jewel);
     sellModal.present();
-  }
-
-  showShare() {
-    let shareModal = this.modal.create(ShareModalPage);
-    shareModal.present();
   }
 }

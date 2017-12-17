@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Jewel, IJewel } from '../../interfaces/jewel.interface';
+import { ProductProvider } from '../../providers/product/product';
 
 /**
  * Generated class for the SellModalPage page.
@@ -15,9 +17,11 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class SellModalPage {
 
-  public contactPerson: string = '';
+  public contactNumber: string = '';
+  public contactEmail: string = '';
+  public jewel: Jewel = this.navParams.data;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public productProvider: ProductProvider) {
   }
 
   ionViewDidLoad() {
@@ -26,6 +30,13 @@ export class SellModalPage {
 
   closeModal() {
     this.viewCtrl.dismiss();
+  }
+
+  updateSoldCount() {
+    console.log('in component for updatecount');
+    return this.productProvider.updateSoldCount(this.jewel).subscribe(res => {
+      console.log(res);
+    });
   }
 
 }

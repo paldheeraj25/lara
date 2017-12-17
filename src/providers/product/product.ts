@@ -32,8 +32,13 @@ export class ProductProvider {
     return this.http.get("http://192.168.0.14:5012/api/products");
   }
 
+  updateSoldCount(jewel: any): Observable<any> {
+    console.log(this.env.api + "jewel/sold");
+    return this.http.post(this.env.api + "jewel/sold", jewel);
+  }
+
   sendSms(message: any) {
     console.log(message);
-    return this.http.post('http://localhost:5012/api/jewel/share', message);
+    return this.http.post(this.env.api + 'jewel/share', message);
   }
 }
