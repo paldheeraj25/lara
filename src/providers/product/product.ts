@@ -21,7 +21,7 @@ export class ProductProvider {
   }
 
   getProduct(id: String): Observable<any> {
-    return this.http.get(this.env.api + "jewel/get/update/123456");
+    return this.http.get(this.env.api + "jewel/get/update/" + id);
   }
 
   updateProduct(timestamp) {
@@ -40,5 +40,9 @@ export class ProductProvider {
   sendSms(message: any) {
     console.log(message);
     return this.http.post(this.env.api + 'jewel/share', message);
+  }
+
+  getAd(): Observable<any> {
+    return this.http.get(this.env.api + "advertisement");
   }
 }

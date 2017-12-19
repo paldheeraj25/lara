@@ -33,14 +33,27 @@ export class ChatbotComponent {
 
   sendMessage() {
     this.chatbot.converse(this.bot).then(res => {
-      if (res['metadata'].intentName === 'price') {
-
+      if (res['metadata'].intentName === 'price' || res['metadata'].intentName === 'description' || res['metadata'].intentName === 'discount') {
         this.productObservable = this.productProvider.getProduct(this.productId);
         this.productObservable.subscribe(productRes => {
-          console.log(productRes);
+          let laraSays;
+          let price;
+          let description;
+          let discount;
+          if (res['metadata'].intentName === 'price') {
+            price = productRes.beadsWeight + productRes.goldCarat + productRes.grossWeight + productRes.netWeight + productRes.perGramWeight + productRes.percentageChrg + productRes.stoneWeight;
+            laraSays = res.fulfillment.speech + ' ' + price;
+          } else if (res['metadata'].intentName === 'description') {
+            description = productRes.description;
+            laraSays = res.fulfillment.speech + ' ' + description;
+          } else if (res['metadata'].intentName === 'discount') {
+            laraSays = res.fulfillment.speech;
+          }
+          this.presentToast(laraSays);
         });
+      } else {
+        this.presentToast(res.fulfillment.speech);
       }
-      this.presentToast(res.fulfillment.speech);
     });
   }
 

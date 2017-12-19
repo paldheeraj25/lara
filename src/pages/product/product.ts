@@ -96,17 +96,19 @@ export class ProductPage {
   }
   //ionic life cycle function
   ionViewDidLoad() {
-    this.key = this.navParams.get('id');
-    this.rowData = this.key.toUpperCase();
-    this.uid = this.rowData.substr(0, 14);
-    this.flagTamper = this.rowData.substr(14, 2);
-    this.timeStampTag = (this.keystream.hexdec(this.rowData.substr(16, 8)));// 
-    this.rollingCodeTag = this.rowData.substr(24, 8);
-    if (this.uid.substr(0, 4) != "3949") {
-      //not valid uid
-    } else {
-      this.getProduct(this.uid);
-    }
+    this.uid = this.navParams.get('id');
+    this.getProduct(this.uid);
+    // this.key = this.navParams.get('id');
+    // this.rowData = this.key.toUpperCase();
+    // this.uid = this.rowData.substr(0, 14);
+    // this.flagTamper = this.rowData.substr(14, 2);
+    // this.timeStampTag = (this.keystream.hexdec(this.rowData.substr(16, 8)));// 
+    // this.rollingCodeTag = this.rowData.substr(24, 8);
+    //if (this.uid.substr(0, 4) != "3949") {
+    //not valid uid
+    //} else {
+    //this.getProduct(this.uid);
+    //}
   }
 
   //Show Estimate
